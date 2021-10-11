@@ -19,9 +19,12 @@ class DigilentNexysA7MIGPads(depth : BigInt) extends NexysA7MIGIODDR(depth) {
   def this(c : DigilentNexysA7MIGParams) {
     this(AddressRange.fromSets(c.address).head.size)
   }
+  override def cloneType = (new DigilentNexysA7MIGPads(depth)).asInstanceOf[this.type]
 }
 
-class DigilentNexysA7MIGIO(depth : BigInt) extends NexysA7MIGIODDR(depth) with NexysA7MIGIOClocksReset
+class DigilentNexysA7MIGIO(depth : BigInt) extends NexysA7MIGIODDR(depth) with NexysA7MIGIOClocksReset {
+  override def cloneType = (new DigilentNexysA7MIGIO(depth)).asInstanceOf[this.type]
+}
 
 class DigilentNexysA7MIGIsland(c : DigilentNexysA7MIGParams, val crossing: ClockCrossingType = AsynchronousCrossing(8))(implicit p: Parameters) extends LazyModule with CrossesToOnlyOneClockDomain {
   val ranges = AddressRange.fromSets(c.address)
