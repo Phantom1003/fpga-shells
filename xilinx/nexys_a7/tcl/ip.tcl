@@ -9,5 +9,5 @@ set_property -dict [list \
         CONFIG.CLKOUT3_USED {true} \
         CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {50.000} \
         CONFIG.CLKOUT2_REQUESTED_OUT_FREQ {200.000} \
-        CONFIG.CLKOUT3_REQUESTED_OUT_FREQ {50.000} \
+        CONFIG.CLKOUT3_REQUESTED_OUT_FREQ {100.000} \
         ] [get_ips mmcm]

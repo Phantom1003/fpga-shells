@@ -105,7 +105,7 @@ abstract class NexysA7Shell(implicit val p: Parameters) extends RawModule {
   nexysa7_sys_clock_mmcm.io.clk_in1 := clock_100
   val clk50   = nexysa7_sys_clock_mmcm.io.clk_out1  // 50 Mhz
   val clk200  = nexysa7_sys_clock_mmcm.io.clk_out2  // 200 Mhz
-  val clkred  = nexysa7_sys_clock_mmcm.io.clk_out3  // 50 Mhz
+  val clk100  = nexysa7_sys_clock_mmcm.io.clk_out3  // 100 Mhz
   nexysa7_sys_clock_mmcm.io.resetn  := resetn
 
   // DUT clock and reset
