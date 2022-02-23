@@ -10,6 +10,8 @@ import sifive.blocks.devices.pinctrl.{BasePin}
 import sifive.fpgashells.clocks._
 import freechips.rocketchip.diplomacy.LazyModule
 
+import sys.process._
+import chisel3.util.HasBlackBoxPath
 //========================================================================
 // This file contains common devices used by our Xilinx FPGA flows and some
 // BlackBox modules used in the Xilinx FPGA flows
@@ -189,7 +191,7 @@ class Series7MMCM(c : PLLParameters) extends BlackBox with PLLInstance {
 // vc707reset
 //-------------------------------------------------------------------------
 
-class vc707reset() extends BlackBox
+class vc707reset() extends BlackBox with HasBlackBoxPath
 {
   val io = new Bundle{
     val areset = Bool(INPUT)
@@ -202,6 +204,9 @@ class vc707reset() extends BlackBox
     val clock4 = Clock(INPUT)
     val reset4 = Bool(OUTPUT)
   }
+
+  val path = System.getProperty("user.dir")
+  addPath(s"${path}/repo/fpga-shells/xilinx/vc707/vsrc/vc707reset.v")
 }
 
 //-------------------------------------------------------------------------
@@ -341,7 +346,7 @@ class vcu118reset() extends BlackBox
 // sdio_spi_bridge
 //-------------------------------------------------------------------------
 
-class sdio_spi_bridge() extends BlackBox
+class sdio_spi_bridge() extends BlackBox with HasBlackBoxPath
 {
   val io = new Bundle{
     val clk      = Clock(INPUT)
@@ -353,4 +358,7 @@ class sdio_spi_bridge() extends BlackBox
     val spi_dq_o = Bits(INPUT,4)
     val spi_dq_i = Bits(OUTPUT,4)
   }
+
+  val path = System.getProperty("user.dir")
+  addPath(s"${path}/repo/fpga-shells/xilinx/vc707/vsrc/sdio.v")
 }
